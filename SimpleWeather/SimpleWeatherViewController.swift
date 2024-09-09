@@ -8,11 +8,45 @@
 import UIKit
 
 class SimpleWeatherViewController: UIViewController {
-
+    
+    let cities = [
+        "Seoul",
+        "Tokyo",
+        "LA",
+        "Seattle"
+    ]
+    
+    let weathers = [
+        "cloud.fill",
+        "sun.max.fill",
+        "wind",
+        "cloud.sun.rain.fill"
+    ]
+    
+    @IBOutlet weak var city: UILabel!
+    @IBOutlet weak var weather: UIImageView!
+    @IBOutlet weak var temperature: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    
+    
+    @IBAction func changeTappedButton(
+        _ sender: Any
+    ) {
+        city.text = cities.randomElement()
+                
+        let imageName = weathers.randomElement()!
+        
+        weather.image = UIImage(systemName:imageName)?.withRenderingMode(.alwaysOriginal)
+        
+        let randomTemp = Int.random(in: 10..<30)
+        
+        temperature.text = "\(randomTemp)°"
     }
     
 
